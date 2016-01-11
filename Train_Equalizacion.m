@@ -57,5 +57,7 @@ close all;
 [CH,CA,anotaciones]=vol_Reshape_5CH(ch1_nuevo,ch2_nuevo,ch2_nuevo,ch2_nuevo,ch5,tamanio(1)*tamanio(2)*tamanio(3));
 
 
-modelo=svmtrain(CH,CA,'kernel_function','rbf');
+% modelo=svmtrain(CH,CA,'kernel_function','rbf');
 
+load('modelo_chi.mat');
+[label,score]=predict(modelo,CH);
