@@ -60,4 +60,16 @@ close all;
 % modelo=svmtrain(CH,CA,'kernel_function','rbf');
 
 load('modelo_chi.mat');
-[label,score]=predict(modelo,CH);
+numpixels=tamanio(1)*tamanio(2)*tamanio(3);
+
+c1_vector=vol_Reshape_1CH(ch1,numpixels);
+c2_vector=vol_Reshape_1CH(ch2,numpixels);
+c3_vector=vol_Reshape_1CH(ch3,numpixels);
+c4_vector=vol_Reshape_1CH(ch4,numpixels);
+
+for i=1:numpixels
+    fila=horzcat(c1_vector(i),c2_vector(i),c3_vector(i),c4_vector(i));
+    label(i)=svmclassify(modelo,fila);
+end
+
+
